@@ -9,12 +9,16 @@
 #define pinLed 4
 
 
-const String ssid = "AiroHome";
-const String pass = "Alessandro01";
+//const String ssid = "AiroHome";
+//const String pass = "Alessandro01";
 
-//#define MQTT_SERVER "mqtt.atrent.it"
+const String ssid = "sistembed";
+const String pass = "lastessa";
+
+#define MQTT_SERVER "mqtt.atrent.it"
 //#define MQTT_SERVER "test.mosquitto.org"
-#define MQTT_SERVER "192.168.1.57"
+//#define MQTT_SERVER "192.168.1.57"
+
 WiFiClient espClient;
 PubSubClient client(MQTT_SERVER, 1883, espClient);
 PubSubClientTools mqtt(client);
@@ -64,15 +68,16 @@ void setup(){
 
 }
 
+String msg;
 void loop(){
   int x = analogRead(pinX);
   int y = analogRead(pinY);
   int bottone = !digitalRead(pinBT);
   
 
-  String msg = String(x) + ":" + String(y);
+  msg = String(x) + ":" + String(y);
   //mqtt.publish("SistEmbed/joystick", String(x) + ":" + String(y));
-  mqtt.publish("SistEmbed/joystick", msg);
+  mqtt.publish("SistEmbed/zAiro/joystick", msg);
   Serial.println("?: " + String(client.state()));
   Serial.println("x: " + String(x) + "\ty: " + String(y)+ " \tp: " + String(bottone));
   delay(500);
