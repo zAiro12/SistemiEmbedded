@@ -1,0 +1,7 @@
+{
+    "default": true,
+    "no-hard-tabs": false,
+    "MD012": false,
+    "MD024": false,
+    "MD026": false
+}
